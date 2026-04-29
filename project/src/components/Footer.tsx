@@ -15,8 +15,12 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">PAJ</span>
+              <div className="w-9 h-9 flex items-center justify-center">
+                <img
+                  src="/pajcow.png"
+                  alt="PAJ Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="font-heading font-bold text-lg text-white">P.A.J & Co.</span>
@@ -93,11 +97,11 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 shrink-0 text-navy-500" />
-                <span className="text-sm text-navy-400">+91-XXXXXXXXXX</span>
+                <span className="text-sm text-navy-400">+91-9625915947</span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={16} className="mt-0.5 shrink-0 text-navy-500" />
-                <span className="text-sm text-navy-400">info@pajco.in</span>
+                <span className="text-sm text-navy-400">pcsprernajain@gmail.com</span>
               </li>
             </ul>
           </div>
