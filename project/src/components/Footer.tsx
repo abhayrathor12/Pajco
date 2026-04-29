@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { servicePreview } from '../data/services';
 
 const socialLinks = [
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Linkedin, label: 'LinkedIn' },
+  { icon: Twitter, label: 'Twitter' },
+  { icon: Facebook, label: 'Facebook' },
 ];
 
 export default function Footer() {
@@ -31,15 +30,14 @@ export default function Footer() {
               to businesses across India.
             </p>
             <div className="flex gap-3 mt-5">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a
+              {socialLinks.map(({ icon: Icon, label }) => (
+                <span
                   key={label}
-                  href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/15 transition-colors"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center opacity-50 cursor-not-allowed"
                 >
                   <Icon size={16} />
-                </a>
+                </span>
               ))}
             </div>
           </div>
@@ -51,18 +49,15 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {[
-                { to: '/', label: 'Home' },
-                { to: '/about', label: 'About Us' },
-                { to: '/services', label: 'Services' },
-                { to: '/contact', label: 'Contact' },
-              ].map(({ to, label }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
-                    className="text-sm text-navy-400 hover:text-white transition-colors"
-                  >
+                { label: 'Home' },
+                { label: 'About Us' },
+                { label: 'Services' },
+                { label: 'Contact' },
+              ].map(({ label }) => (
+                <li key={label}>
+                  <span className="text-sm text-navy-400 cursor-not-allowed select-none opacity-60">
                     {label}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -76,12 +71,9 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {servicePreview.slice(0, 6).map(({ id, title }) => (
                 <li key={id}>
-                  <Link
-                    to={`/services#${id}`}
-                    className="text-sm text-navy-400 hover:text-white transition-colors"
-                  >
+                  <span className="text-sm text-navy-400 cursor-not-allowed select-none opacity-60">
                     {title}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -119,8 +111,8 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} P.A.J & Co. &ndash; Company Secretaries. All rights reserved.
           </p>
           <div className="flex gap-4 text-xs text-navy-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <span className="cursor-not-allowed select-none opacity-60">Privacy Policy</span>
+            <span className="cursor-not-allowed select-none opacity-60">Terms of Service</span>
           </div>
         </div>
       </div>

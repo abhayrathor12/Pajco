@@ -41,9 +41,8 @@ export default function HeroSlider() {
       {slides.map((slide, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
         >
           <img
             src={slide.image}
@@ -65,55 +64,47 @@ export default function HeroSlider() {
               {slides[current].sub}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 animate-slide-up">
-              <a
-                href="/contact"
-                className="px-7 py-3.5 bg-white text-navy-900 font-semibold rounded-lg hover:bg-navy-50 transition-colors shadow-lg"
+              <span
+                className="px-7 py-3.5 bg-white text-navy-900 font-semibold rounded-lg shadow-lg opacity-50 cursor-not-allowed select-none"
               >
                 Book a Consultation
-              </a>
-              <a
-                href="/services"
-                className="px-7 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+              </span>
+              <span
+                className="px-7 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg opacity-50 cursor-not-allowed select-none"
               >
                 Our Services
-              </a>
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Navigation */}
+      {/* Navigation arrows — kept functional for slider */}
       <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
-  
-  {/* Up Arrow */}
-  <button
-    onClick={prev}
-    className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
-    aria-label="Previous slide"
-  >
-    <ChevronLeft className="rotate-90 text-white" size={20} />
-  </button>
+        <button
+          onClick={prev}
+          className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="rotate-90 text-white" size={20} />
+        </button>
+        <button
+          onClick={next}
+          className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="rotate-90 text-white" size={20} />
+        </button>
+      </div>
 
-  {/* Down Arrow */}
-  <button
-    onClick={next}
-    className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
-    aria-label="Next slide"
-  >
-    <ChevronRight className="rotate-90 text-white" size={20} />
-  </button>
-
-</div>
-
-      {/* Dots */}
+      {/* Dots — kept functional for slider */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? 'w-8 bg-white' : 'w-2 bg-white/40'
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-8 bg-white' : 'w-2 bg-white/40'
+              }`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
