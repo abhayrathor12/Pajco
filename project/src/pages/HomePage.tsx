@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarCheck, Users, ShieldCheck, Award } from 'lucide-react';
 import HeroSlider from '../components/HeroSlider';
 import SectionHeading from '../components/SectionHeading';
@@ -39,11 +40,12 @@ export default function HomePage() {
                 property &mdash; we serve as your trusted partner through every stage of
                 your business journey.
               </p>
-              <span
-                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-navy-900 text-white font-semibold rounded-lg shadow-md opacity-50 cursor-not-allowed select-none"
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-navy-900 text-white font-semibold rounded-lg hover:bg-navy-800 transition-colors shadow-md"
               >
                 Read More <ArrowRight size={16} />
-              </span>
+              </Link>
             </div>
             <div className="relative">
               <img
@@ -88,11 +90,12 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <span
-              className="inline-flex items-center gap-2 px-7 py-3 border-2 border-navy-900 text-navy-900 font-semibold rounded-lg opacity-50 cursor-not-allowed select-none"
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-7 py-3 border-2 border-navy-900 text-navy-900 font-semibold rounded-lg hover:bg-navy-900 hover:text-white transition-colors"
             >
               View All Services <ArrowRight size={16} />
-            </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -112,16 +115,18 @@ export default function HomePage() {
             our team is here to guide you every step of the way.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <span
-              className="px-8 py-3.5 bg-white text-navy-900 font-semibold rounded-lg shadow-lg opacity-50 cursor-not-allowed select-none"
+            <Link
+              to="/consultation"
+              className="px-8 py-3.5 bg-white text-navy-900 font-semibold rounded-lg hover:bg-navy-50 transition-colors shadow-lg"
             >
               Book a Consultation
-            </span>
-            <span
-              className="px-8 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg opacity-50 cursor-not-allowed select-none"
+            </Link>
+            <a
+              href="tel:+91XXXXXXXXXX"
+              className="px-8 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
             >
               Call Us Now
-            </span>
+            </a>
           </div>
         </div>
       </section>

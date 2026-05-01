@@ -64,23 +64,27 @@ export default function HeroSlider() {
               {slides[current].sub}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 animate-slide-up">
-              <span
-                className="px-7 py-3.5 bg-white text-navy-900 font-semibold rounded-lg shadow-lg opacity-50 cursor-not-allowed select-none"
+              <a
+                href="/consultation"
+                className="px-7 py-3.5 bg-white text-navy-900 font-semibold rounded-lg hover:bg-navy-50 transition-colors shadow-lg"
               >
                 Book a Consultation
-              </span>
-              <span
-                className="px-7 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg opacity-50 cursor-not-allowed select-none"
+              </a>
+              <a
+                href="/services"
+                className="px-7 py-3.5 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
               >
                 Our Services
-              </span>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Navigation arrows — kept functional for slider */}
+      {/* Navigation */}
       <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+
+        {/* Up Arrow */}
         <button
           onClick={prev}
           className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
@@ -88,6 +92,8 @@ export default function HeroSlider() {
         >
           <ChevronLeft className="rotate-90 text-white" size={20} />
         </button>
+
+        {/* Down Arrow */}
         <button
           onClick={next}
           className="w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
@@ -95,9 +101,10 @@ export default function HeroSlider() {
         >
           <ChevronRight className="rotate-90 text-white" size={20} />
         </button>
+
       </div>
 
-      {/* Dots — kept functional for slider */}
+      {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
         {slides.map((_, i) => (
           <button
