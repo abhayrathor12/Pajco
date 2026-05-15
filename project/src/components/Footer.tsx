@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Linkedin, Instagram, Facebook } from 'lucide-react';
 import { servicePreview } from '../data/services';
 const socialLinks = [
   {
@@ -11,6 +11,11 @@ const socialLinks = [
     icon: Instagram,
     label: 'Instagram',
     url: 'https://www.instagram.com/pajandco.pcsfirm/'
+  },
+  {
+    icon: Facebook,
+    label: 'Facebook',
+    url: 'https://www.facebook.com/share/1PMkGFB6vF/'
   },
 ];
 
@@ -122,6 +127,7 @@ export default function Footer() {
                 <Mail size={16} className="mt-0.5 shrink-0 text-navy-500" />
                 <span className="text-sm text-navy-400">pcsprernajain@gmail.com</span>
               </li>
+
             </ul>
           </div>
         </div>

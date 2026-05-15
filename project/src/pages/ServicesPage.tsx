@@ -25,213 +25,204 @@ import {
 
 const serviceCategories = [
   {
-    id: 'start-business',
+    id: 'company-formation',
     icon: Building2,
-    title: 'Start Your Business',
-    tagline: 'Company Inc., LLP, Proprietorship, Partnership & Section 8 Company',
+    title: 'Company Formation',
+    tagline: 'Business Incorporation & Legal Entity Setup',
     color: 'blue',
     items: [
-      'Company Registration',
-      'Proprietorship Registration',
-      'Partnership Registration',
-      'Limited Liability Partnership',
-      'One Person Company',
       'Private Limited Company',
       'Public Limited Company',
-      'Special Entity Registration',
-      'Section 8 Company Registration',
-      'Society Registration',
-      'Trust Registration',
+      'One Person Company (OPC)',
+      'LLP Registration',
+      'Partnership Firm Registration',
+      'Proprietorship Setup',
+      'Section 8 Company (NGO)',
     ],
   },
+
   {
-    id: 'industry-business',
+    id: 'industry-registrations',
     icon: Factory,
     title: 'Industry & Business Registrations',
-    tagline: 'FSSAI, IEC, Startup India, MSME, Shop & Establishment',
+    tagline: 'Licenses, Certifications & Government Registrations',
     color: 'orange',
     items: [
       'FSSAI Registration',
-      'Import Export Code Registration',
+      'Import Export Code (IEC)',
+      'ICEGATE / DGFT Registration',
       'Startup India Registration',
-      'MSME Registration',
-      'Shop Establishment Registration',
-      'IEC Registration',
+      'MSME (Udyam) Registration',
+      'Shop & Establishment Registration',
     ],
   },
+
   {
-    id: 'tax-statutory',
-    icon: Receipt,
-    title: 'Tax & Statutory Registration',
-    tagline: 'GST, ESI / PF, ITR, DSC, DIN Applications',
-    color: 'green',
-    items: [
-      'GST Registration',
-      'ESI / PF Registration',
-      'Income Tax Return (ITR)',
-      'Digital Signature Certificate (DSC)',
-      'Director Identification Number (DIN)',
-      'Tax Compliance',
-      'XBRL Filings',
-    ],
-  },
-  {
-    id: 'intellectual-property',
-    icon: Shield,
-    title: 'Intellectual Property & Brand Protection',
-    tagline: 'Trademark Reg., Objection, Hearing, Opposition & Counter Statement',
-    color: 'purple',
-    items: [
-      'Trademark Application',
-      'Trademark Objection',
-      'Trademark Hearing',
-      'Trademark Withdrawal',
-      'Trademark Registration',
-      'Trademark Opposition',
-      'Trademark Counter Statement',
-      'Trademark Renewal',
-      'Trademark Infringement',
-      'AMC Service of Monitoring',
-    ],
-  },
-  {
-    id: 'corporate-compliance',
-    icon: BookOpen,
-    title: 'Corporate Compliance & ROC Services',
-    tagline: 'ROC Filings, Annual Compliances, KYC, Registers, DPT-3, MSME, XBRL Filings',
-    color: 'teal',
-    items: [
-      'Mandatory Compliances',
-      'Annual returns / Annual Filings',
-      'MSME Return',
-      'Return of Deposit DPT-3 Return',
-      'Minutes and Statutory Registers',
-      'Appointment of Auditor',
-      'Appointment of Secretarial Auditor',
-      'KYC of Directors',
-      'Yearly/ Event based Directors disclosures',
-      'Share Reconciliation Statement',
-      'Annual Filing of LLP',
-      'Specialised Filings (XBRL)',
-      'Share Reconciliation statement',
-      'RBI and FEMA Compliances',
-    ],
-  },
-  {
-    id: 'event-compliances',
+    id: 'event-based-compliance',
     icon: Calendar,
-    title: 'Event-Based Compliances',
-    tagline: 'Director Changes, Share Transfer, MOA/AOA Changes, Name Change, Capital Increase & More',
+    title: 'Event-Based Compliance',
+    tagline: 'Corporate Changes & ROC Event Filings',
     color: 'amber',
     items: [
-      'Alteration of MOA and AOA',
+      'Appointment / Resignation of Directors',
+      'Change of Auditor',
+      'Share Transfer & Allotment',
+      'Increase in Authorised Capital',
+      'Alteration of MOA & AOA',
+      'Change of Company Name',
+      'Shift in Registered Office',
       'Charge Creation / Satisfaction',
-      'Company Name Change',
-      'LLP Name change',
-      'Change in Auditor',
-      'Changes in Object clause of MOA',
-      'Transfers of Shares',
-      'Director Resignation and Appointment',
-      'Change in Designation of Director',
-      'Increase in Authorised Share Capital',
-      'Issue of Shares',
     ],
   },
+
   {
-    id: 'restructuring',
-    icon: RefreshCw,
-    title: 'Restructuring & Business Changes',
-    tagline: 'Conversion (Company & LLP), Office Shift, Winding Up / Strike Off',
-    color: 'indigo',
+    id: 'secretarial-support',
+    icon: BookOpen,
+    title: 'Ongoing Secretarial Support',
+    tagline: 'Board, ROC & Secretarial Compliance Management',
+    color: 'teal',
     items: [
-      'Registered office Shift of Company and LLP',
-      'Conversion of Company in to LLP',
-      'Conversion of Public Limited to Private Limited',
-      'Conversion of Private Limited to Public Limited',
-      'Conversion of LLP in to Company',
-      'Conversion of OPC in to private limited',
-      'Conversion of Private limited in to OPC',
-      'Merger and Acquisition',
-      'Winding up',
-      'Demerger',
-    ],
-  },
-  {
-    id: 'exit-closure',
-    icon: LogOut,
-    title: 'Exit & Closure Services',
-    tagline: 'Company Closure, LLP Closure, GST Cancellation',
-    color: 'red',
-    items: [
-      'Close Your LLP',
-      'Close Your Company',
-      'GST Cancellation',
-      'Strike Off',
-    ],
-  },
-  {
-    id: 'professional-advisory',
-    icon: Briefcase,
-    title: 'Professional & Advisory Services',
-    tagline: 'Due Diligence, Secretarial Audit, Accounting, Taxation, Compounding of Offences',
-    color: 'slate',
-    items: [
-      'Due Diligence of Company',
-      'Transaction Advisory Services',
+      'Board Meeting Notices & Minutes',
+      'Maintenance of Statutory Registers',
+      'Director KYC & Disclosures',
+      'ROC Event-Based Filings',
       'Secretarial Audit',
-      'Social Audit',
-      'Social Impact Assessment',
-      'Accounting and Bookkeeping',
-      'Taxation Service',
-      'Income Tax Return (ITR)',
-      'Compounding of Offences',
-      'GST Compliance',
     ],
   },
+
   {
-    id: 'advisory-support',
-    icon: Headphones,
-    title: 'Advisory & Support',
-    tagline: 'Drafting & Vetting, Retainership Advisory, XBRL Filings',
+    id: 'annual-compliance',
+    icon: FileText,
+    title: 'Annual Compliance',
+    tagline: 'Annual ROC Filings & Corporate Compliance',
+    color: 'green',
+    items: [
+      'AOC-4 Filing',
+      'MGT-7 / MGT-7A Filing',
+      'AOC-4 XBRL',
+      'Annual ROC Filing Support',
+      'Compounding of Offences',
+    ],
+  },
+
+  {
+    id: 'gst-services',
+    icon: Receipt,
+    title: 'GST Services',
+    tagline: 'GST Registration, Returns & Notices',
     color: 'cyan',
     items: [
-      'Drafting and Vetting services',
-      'Retainership Services',
-      'Representation Services',
-      'Management Services',
-      'Company Law Advisory',
-      'Intellectual Property Rights',
-      'Capital Market Consultants',
-      'Specialised Filings (XBRL)',
+      'GST Registration & Setup',
+      'GSTR-1 / GSTR-3B Filing',
+      'Annual Return (GSTR-9)',
+      'GST Refunds',
+      'GST Notice Handling',
     ],
   },
+
+  {
+    id: 'digital-services',
+    icon: Monitor,
+    title: 'Digital Services',
+    tagline: 'DSC, eSign & Digital Authentication',
+    color: 'violet',
+    items: [
+      'Class 3 DSC Issuance',
+      'DGFT DSC Token',
+      'eSign Services',
+      'DSC Renewal / Update',
+    ],
+  },
+
   {
     id: 'startup-support',
     icon: Rocket,
-    title: 'Startup Support Services',
-    tagline: 'Pvt Ltd Inc., Startup India, Pitch Deck, Startup Compliance, Due Diligence for Investors',
+    title: 'Startup & Funding Support',
+    tagline: 'Startup Recognition, Funding & Investor Readiness',
     color: 'rose',
     items: [
-      'Pvt Ltd Inc.',
-      'Startup India',
-      'Pitch Deck',
-      'Startup Compliance',
-      'Due Diligence for Investors',
+      'DPIIT Recognition',
+      'Startup Tax Exemption',
+      'Pitch Deck Preparation',
+      'Investor Due Diligence Support',
+      'Shareholders’ Agreement (SHA)',
+      'Valuation Support',
+      'MSME Lending Assistance',
+      'Startup Compliance Management',
     ],
   },
+
   {
-    id: 'digital-director',
-    icon: Monitor,
-    title: 'Digital & Director Services',
-    tagline: 'DSC Application, DIN Application',
-    color: 'violet',
+    id: 'exit-closure',
+    icon: LogOut,
+    title: 'Exit & Closure',
+    tagline: 'Business Closure & Strike Off Services',
+    color: 'red',
     items: [
-      'DSC Application',
-      'DIN Application',
+      'Company Strike Off',
+      'Section 248 Closure',
+      'Voluntary Winding Up',
+      'LLP Closure',
+      'GST Cancellation',
+    ],
+  },
+
+  {
+    id: 'restructuring',
+    icon: RefreshCw,
+    title: 'Restructuring',
+    tagline: 'Business Conversion & Structural Changes',
+    color: 'indigo',
+    items: [
+      'Partnership Conversion',
+      'LLP to Company Conversion',
+      'Registered Office Shift',
+      'Object Clause Amendment',
+      'Private to Public Conversion',
+    ],
+  },
+
+  {
+    id: 'core-advisory',
+    icon: Briefcase,
+    title: 'Core Advisory',
+    tagline: 'Business Advisory & Financial Support',
+    color: 'slate',
+    items: [
+      'Due Diligence',
+      'Accounting & Bookkeeping',
+      'Retainership Services',
+    ],
+  },
+
+  {
+    id: 'documentation-legal',
+    icon: Shield,
+    title: 'Documentation & Legal Support',
+    tagline: 'Agreements, Drafting & Legal Documentation',
+    color: 'purple',
+    items: [
+      'Drafting & Vetting of Agreements',
+      'Investor Due Diligence Support',
+      'Share Subscription Agreement (SSA)',
+    ],
+  },
+
+  {
+    id: 'ipr-services',
+    icon: Lightbulb,
+    title: 'Intellectual Property (IPR)',
+    tagline: 'Trademark Registration & Brand Protection',
+    color: 'pink',
+    items: [
+      'Trademark Registration',
+      'Public Search & Class Selection',
+      'Trademark Objection Reply',
+      'Hearing Representation',
+      'Opposition & Counter Statement',
     ],
   },
 ];
-
 const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; badge: string; dot: string }> = {
   blue: { bg: 'hover:border-blue-300', iconBg: 'bg-blue-50', iconText: 'text-blue-600', badge: 'bg-blue-50 text-blue-700 border-blue-200', dot: 'bg-blue-500' },
   orange: { bg: 'hover:border-orange-300', iconBg: 'bg-orange-50', iconText: 'text-orange-600', badge: 'bg-orange-50 text-orange-700 border-orange-200', dot: 'bg-orange-500' },
@@ -245,6 +236,13 @@ const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; b
   cyan: { bg: 'hover:border-cyan-300', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', badge: 'bg-cyan-50 text-cyan-700 border-cyan-200', dot: 'bg-cyan-500' },
   rose: { bg: 'hover:border-rose-300', iconBg: 'bg-rose-50', iconText: 'text-rose-600', badge: 'bg-rose-50 text-rose-700 border-rose-200', dot: 'bg-rose-500' },
   violet: { bg: 'hover:border-violet-300', iconBg: 'bg-violet-50', iconText: 'text-violet-600', badge: 'bg-violet-50 text-violet-700 border-violet-200', dot: 'bg-violet-500' },
+  pink: {
+    bg: 'hover:border-pink-300',
+    iconBg: 'bg-pink-50',
+    iconText: 'text-pink-600',
+    badge: 'bg-pink-50 text-pink-700 border-pink-200',
+    dot: 'bg-pink-500',
+  },
 };
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
@@ -267,7 +265,7 @@ function HeroSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-       
+
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight tracking-tight">
           Our Services
         </h1>
@@ -296,7 +294,7 @@ function HeroSection() {
 // ─── Service Card ─────────────────────────────────────────────────────────────
 
 function ServiceCard({ category }: { category: typeof serviceCategories[0] }) {
-  
+
   const Icon = category.icon;
   const c = colorMap[category.color];
 
@@ -318,7 +316,7 @@ function ServiceCard({ category }: { category: typeof serviceCategories[0] }) {
             <h3 className="text-base sm:text-lg font-bold text-navy-900 leading-snug">
               {category.title}
             </h3>
-            
+
           </div>
           <p className="mt-1 text-xs sm:text-sm text-navy-500 leading-relaxed line-clamp-2">
             {category.tagline}
@@ -371,7 +369,7 @@ function ServicesListSection() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-navy-900">
             What We Offer
           </h2>
-          
+
         </div>
 
         {/* 3-column card grid */}
@@ -396,7 +394,7 @@ function ServicesListSection() {
               </div>
             </div>
           </div>
-         
+
         </div>
       </div>
     </section>
@@ -420,7 +418,7 @@ function CTASection() {
           how we can help your business thrive.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-         
+
           <a
             href="tel:+911234567890"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-navy-800 text-white font-semibold rounded-xl hover:bg-navy-700 transition-colors border border-navy-700"
@@ -429,7 +427,7 @@ function CTASection() {
             Contact Us
           </a>
         </div>
-       
+
       </div>
     </section>
   );
