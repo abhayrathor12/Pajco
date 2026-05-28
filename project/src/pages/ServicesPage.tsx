@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ChevronDown,
   ArrowRight,
@@ -18,7 +18,6 @@ import {
   Rocket,
   Monitor,
 } from 'lucide-react';
-import { SingleServicePage } from './singleservice'; // adjust path if needed
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -412,27 +411,12 @@ function CTASection() {
 // ─── Page (with routing) ──────────────────────────────────────────────────────
 
 export default function ServicesPage() {
-  const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  // If a service is selected, render its detail page
-  if (activeSlug) {
-    return (
-      <SingleServicePage
-        slug={activeSlug}
-        onBack={() => {
-          setActiveSlug(null);
-          // Scroll to top when going back
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      />
-    );
-  }
-
-  // Otherwise render the services list
   return (
     <div className="min-h-screen bg-white">
       <HeroSection />
-      <ServicesListSection onServiceClick={setActiveSlug} />
+      <ServicesListSection onServiceClick={(slug) => navigate(`/services/${slug}`)} />
       <CTASection />
     </div>
   );

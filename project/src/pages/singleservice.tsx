@@ -4,24 +4,26 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
     ArrowLeft,
     CheckCircle2,
     ChevronRight,
     FileText,
-    Layers,
     ClipboardList,
     Star,
-    Phone,
     Calendar,
     Award,
     Shield,
     Zap,
     Users,
     ArrowUpRight,
-    Dot,
 } from 'lucide-react';
 import { servicesData, ServiceData } from '../data/data';
+
+const WHATSAPP_NUMBER = '919625915947';
+const WHATSAPP_MESSAGE = 'Hello! I would like to enquire about your services.';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 // ─── Fonts (add to your index.html or tailwind config) ───────────────────────
 // <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -116,10 +118,11 @@ function ServiceHero({ service, onBack }: { service: ServiceData; onBack: () => 
             </div>
 
             {/* Top nav strip */}
-            <div className="absolute top-12 left-0 right-0 flex items-center justify-between px-6 sm:px-10 lg:px-16 pt-8">
+            <div className="absolute top-12 left-0 right-0 z-30 flex items-center justify-between px-6 sm:px-10 lg:px-16 pt-8 pointer-events-auto">
                 <button
                     onClick={onBack}
-                    className="inline-flex items-center gap-2 text-navy-300 hover:text-white transition-colors text-sm"
+                    type="button"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-navy-300 hover:text-white hover:bg-white/5 transition-colors text-sm"
                 >
                     <ArrowLeft className="w-4 h-4" />
                     <span>All Services</span>
@@ -133,7 +136,7 @@ function ServiceHero({ service, onBack }: { service: ServiceData; onBack: () => 
             </div>
 
             {/* Main content — pinned to bottom */}
-            <div className="relative max-w-6xl mx-auto w-full px-6 sm:px-10 lg:px-16 pb-20 pt-32">
+            <div className="relative z-10 max-w-6xl mx-auto w-full px-6 sm:px-10 lg:px-16 pb-20 pt-32">
                 <div className="grid lg:grid-cols-[1fr_360px] gap-16 items-end">
                     {/* Left: headline block */}
                     <div>
@@ -154,20 +157,14 @@ function ServiceHero({ service, onBack }: { service: ServiceData; onBack: () => 
                         {/* CTA row */}
                         <div className="mt-10 flex flex-wrap gap-3">
                             <a
-                                href="#contact"
+                                href="/consultation"
                                 className="group inline-flex items-center gap-2.5 px-6 py-3.5 bg-accent-500 hover:bg-accent-400 text-white font-semibold rounded-2xl transition-all duration-200 shadow-xl shadow-accent-500/25 text-sm"
                             >
                                 <Calendar className="w-4 h-4" />
                                 {service.cta.buttonText}
                                 <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>
-                            <a
-                                href="tel:+911234567890"
-                                className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-navy-800/60 hover:bg-navy-800 text-white font-semibold rounded-2xl transition-colors border border-navy-700/60 text-sm backdrop-blur-sm"
-                            >
-                                <Phone className="w-4 h-4 text-navy-400" />
-                                Call Us Now
-                            </a>
+
                         </div>
                     </div>
 
@@ -421,7 +418,9 @@ function WhyChooseSection({ service }: { service: ServiceData }) {
                             <SectionHeading label="Our edge" title="Why Choose P.A.J & Co.?" />
                             <p className="text-navy-500 text-sm leading-relaxed mt-2">{service.whyChoosePAJ.intro}</p>
                             <a
-                                href="#contact"
+                                href={WHATSAPP_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-accent-600 hover:text-accent-500 transition-colors group"
                             >
                                 Talk to an expert
@@ -484,20 +483,14 @@ function CTABanner({ service }: { service: ServiceData }) {
 
                         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a
-                                href="mailto:info@pajandco.com"
+                                href="/consultation"
                                 className="group inline-flex items-center gap-2.5 px-8 py-4 bg-accent-500 hover:bg-accent-400 text-white font-semibold rounded-2xl transition-all duration-200 shadow-xl shadow-accent-500/20 text-sm"
                             >
                                 <Calendar className="w-4 h-4" />
                                 {service.cta.buttonText}
                                 <ArrowUpRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>
-                            <a
-                                href="tel:+911234567890"
-                                className="inline-flex items-center gap-2.5 px-8 py-4 bg-navy-800 hover:bg-navy-700 text-white font-semibold rounded-2xl transition-colors border border-navy-700 text-sm"
-                            >
-                                <Phone className="w-4 h-4 text-navy-400" />
-                                Call for Quick Query
-                            </a>
+
                         </div>
 
                         <p className="mt-6 text-navy-600 text-xs tracking-wide">
@@ -511,13 +504,11 @@ function CTABanner({ service }: { service: ServiceData }) {
 }
 
 // ─── Main Export ──────────────────────────────────────────────────────────────
-export function SingleServicePage({
-    slug,
-    onBack,
-}: {
-    slug: string;
-    onBack: () => void;
-}) {
+export function SingleServicePage() {
+    const { slug = '' } = useParams<{ slug: string }>();
+    const navigate = useNavigate();
+    const handleBack = () => navigate('/services');
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'instant' });
     }, [slug]);
@@ -530,7 +521,7 @@ export function SingleServicePage({
                 <div className="text-center">
                     <p className="text-navy-500 text-lg mb-4">Service not found.</p>
                     <button
-                        onClick={onBack}
+                        onClick={handleBack}
                         className="inline-flex items-center gap-2 text-accent-500 hover:text-accent-600 font-medium"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -543,7 +534,7 @@ export function SingleServicePage({
 
     return (
         <div className="min-h-screen bg-white font-body antialiased">
-            <ServiceHero service={service} onBack={onBack} />
+            <ServiceHero service={service} onBack={handleBack} />
             <OverviewSection service={service} />
             <BenefitsSection service={service} />
             <ProcessSection service={service} />
