@@ -66,7 +66,7 @@ const categoryCols: CategoryCol[] = [
         heading: 'Industry & Business Registrations',
         items: [
           { label: 'FSSAI Registration', slug: 'fssai-registration' },
-          { label: 'Import Export Code (IEC)', slug: 'iec-registration' },           // was: import-export-code
+          { label: 'Import Export Code (IEC)', slug: 'iec-registration' },
           { label: 'ICEGATE / DGFT Registration', slug: 'icegate-dgft-registration' },
           { label: 'Startup India Registration', slug: 'startup-india-registration' },
           { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },
@@ -88,17 +88,17 @@ const categoryCols: CategoryCol[] = [
           { label: 'Change of Auditor', slug: 'change-of-auditor' },
           { label: 'Share Transfer & Allotment', slug: 'share-transfer-allotment' },
           { label: 'Increase in Authorised Capital', slug: 'increase-authorised-capital' },
-          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },          // was: alteration-moa-aoa
-          { label: 'Change of Company Name', slug: 'company-name-change' },           // was: change-company-name
-          { label: 'Change of Registered Office', slug: 'change-of-registered-office' }, // was: charge-creation-satisfaction (no data) → mapped to closest
+          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },
+          { label: 'Change of Company Name', slug: 'company-name-change' },
+          { label: 'Change of Registered Office', slug: 'change-of-registered-office' },
         ],
       },
       {
         heading: 'Ongoing Secretarial Support',
         items: [
           { label: 'Board Meeting Notices & Minutes', slug: 'board-meeting-notices-minutes' },
-          { label: 'Maintenance of Statutory Registers', slug: 'statutory-registers-maintenance' }, // was: maintenance-statutory-registers
-          { label: 'Director KYC & Disqualification', slug: 'director-kyc-disqualification' },     // was: director-kyc-disclosures
+          { label: 'Maintenance of Statutory Registers', slug: 'statutory-registers-maintenance' },
+          { label: 'Director KYC & Disqualification', slug: 'director-kyc-disqualification' },
           { label: 'ROC Event-Based Filings', slug: 'roc-event-based-filings' },
           { label: 'Secretarial Audit', slug: 'secretarial-audit' },
         ],
@@ -107,9 +107,9 @@ const categoryCols: CategoryCol[] = [
         heading: 'Annual Compliance',
         items: [
           { label: 'AOC-4 Filing', slug: 'aoc-4-filing' },
-          { label: 'MGT-7 / MGT-7A Filing', slug: 'mgt-7-annual-return' },           // was: mgt-7-filing
-          { label: 'ADT-1 & MSME Annual Filing', slug: 'adt-1-msme-annual-filing' }, // was: aoc-4-xbrl (no data)
-          { label: 'Annual ROC Filing Support', slug: 'roc-event-based-filings' },   // was: annual-roc-filing-support (no data) → closest
+          { label: 'MGT-7 / MGT-7A Filing', slug: 'mgt-7-annual-return' },
+          { label: 'ADT-1 & MSME Annual Filing', slug: 'adt-1-msme-annual-filing' },
+          { label: 'Annual ROC Filing Support', slug: 'roc-event-based-filings' },
           { label: 'Compounding of Offences', slug: 'compounding-of-offences' },
         ],
       },
@@ -124,10 +124,10 @@ const categoryCols: CategoryCol[] = [
       {
         heading: '',
         items: [
-          { label: 'GST Registration & Setup', slug: 'gst-registration' },            // was: gst-registration-setup
-          { label: 'GSTR-1 / GSTR-3B Return Filing', slug: 'gst-return-filing' },    // was: gstr-1-3b-filing
+          { label: 'GST Registration & Setup', slug: 'gst-registration' },
+          { label: 'GSTR-1 / GSTR-3B Return Filing', slug: 'gst-return-filing' },
           { label: 'Annual Return (GSTR-9)', slug: 'gstr-9-annual-return' },
-          { label: 'GST Refunds', slug: 'gst-refund-claims' },                        // was: gst-refunds
+          { label: 'GST Refunds', slug: 'gst-refund-claims' },
           { label: 'GST Notice Handling', slug: 'gst-notice-handling' },
         ],
       },
@@ -142,9 +142,9 @@ const categoryCols: CategoryCol[] = [
       {
         heading: '',
         items: [
-          { label: 'Class 3 DSC Issuance', slug: 'dsc-issuance' },                   // was: class-3-dsc-issuance
-          { label: 'IEC for Service Exporters', slug: 'iec-service-exporters' },      // was: dgft-dsc-token (no data) → closest
-          { label: 'DSC Renewal / Upgrade', slug: 'dsc-renewal-upgrade' },            // was: dsc-renewal-update / esign-services
+          { label: 'Class 3 DSC Issuance', slug: 'dsc-issuance' },
+          { label: 'IEC for Service Exporters', slug: 'iec-service-exporters' },
+          { label: 'DSC Renewal / Upgrade', slug: 'dsc-renewal-upgrade' },
         ],
       },
     ],
@@ -158,14 +158,14 @@ const categoryCols: CategoryCol[] = [
       {
         heading: '',
         items: [
-          { label: 'DPIIT Recognition', slug: 'dpiit-startup-recognition' },          // was: dpiit-recognition
-          { label: 'Startup Tax Exemption (80-IAC)', slug: 'startup-tax-exemption-80iac' }, // was: startup-tax-exemption
-          { label: 'Startup India Registration', slug: 'startup-india-registration' }, // was: pitch-deck-preparation (no data)
-          { label: 'Investor Due Diligence Support', slug: 'due-diligence' },          // was: investor-due-diligence (no data) → closest
+          { label: 'DPIIT Recognition', slug: 'dpiit-startup-recognition' },
+          { label: 'Startup Tax Exemption (80-IAC)', slug: 'startup-tax-exemption-80iac' },
+          { label: 'Startup India Registration', slug: 'startup-india-registration' },
+          { label: 'Investor Due Diligence Support', slug: 'due-diligence' },
           { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },
-          { label: 'Share Subscription Agreement', slug: 'share-subscription-agreement' }, // was: valuation-support (no data)
-          { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },    // was: msme-lending-assistance (no data)
-          { label: 'Startup Compliance (ROC)', slug: 'roc-event-based-filings' },     // was: startup-compliance-management (no data)
+          { label: 'Share Subscription Agreement', slug: 'share-subscription-agreement' },
+          { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },
+          { label: 'Startup Compliance (ROC)', slug: 'roc-event-based-filings' },
         ],
       },
     ],
@@ -180,7 +180,7 @@ const categoryCols: CategoryCol[] = [
         heading: 'Exit & Closure',
         items: [
           { label: 'Company Strike Off', slug: 'company-strike-off' },
-          { label: 'Voluntary Winding Up', slug: 'voluntary-winding-up' },            // was: section-248-closure → same thing
+          { label: 'Voluntary Winding Up', slug: 'voluntary-winding-up' },
           { label: 'Voluntary Winding Up (IBC)', slug: 'voluntary-winding-up' },
           { label: 'LLP Closure', slug: 'llp-closure' },
           { label: 'GST Cancellation', slug: 'gst-cancellation' },
@@ -189,10 +189,10 @@ const categoryCols: CategoryCol[] = [
       {
         heading: 'Restructuring',
         items: [
-          { label: 'Business Structure Conversion', slug: 'business-structure-conversion' }, // was: partnership-conversion / llp-to-company-conversion
-          { label: 'Change of Registered Office', slug: 'change-of-registered-office' },    // was: registered-office-shift
-          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },                 // was: object-clause-amendment
-          { label: 'Company Name Change', slug: 'company-name-change' },                    // was: private-to-public-conversion (no data)
+          { label: 'Business Structure Conversion', slug: 'business-structure-conversion' },
+          { label: 'Change of Registered Office', slug: 'change-of-registered-office' },
+          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },
+          { label: 'Company Name Change', slug: 'company-name-change' },
         ],
       },
     ],
@@ -208,15 +208,15 @@ const categoryCols: CategoryCol[] = [
         items: [
           { label: 'Due Diligence', slug: 'due-diligence' },
           { label: 'Accounting & Bookkeeping', slug: 'accounting-bookkeeping' },
-          { label: 'Secretarial Audit', slug: 'secretarial-audit' },                  // was: retainership-services (no data)
+          { label: 'Secretarial Audit', slug: 'secretarial-audit' },
         ],
       },
       {
         heading: 'Documentation & Legal Support',
         items: [
-          { label: 'Drafting & Vetting of Agreements', slug: 'agreement-drafting-vetting' }, // was: drafting-vetting-agreements
+          { label: 'Drafting & Vetting of Agreements', slug: 'agreement-drafting-vetting' },
           { label: 'Share Subscription Agreement (SSA)', slug: 'share-subscription-agreement' },
-          { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },         // was: investor-due-diligence-support (no data)
+          { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },
         ],
       },
     ],
@@ -231,10 +231,10 @@ const categoryCols: CategoryCol[] = [
         heading: '',
         items: [
           { label: 'Trademark Registration', slug: 'trademark-registration' },
-          { label: 'Trademark Search & Watch', slug: 'trademark-watch-search' },       // was: trademark-public-search
+          { label: 'Trademark Search & Watch', slug: 'trademark-watch-search' },
           { label: 'Trademark Objection Reply', slug: 'trademark-objection-reply' },
           { label: 'Hearing Representation', slug: 'trademark-hearing-representation' },
-          { label: 'Opposition & Counter Statement', slug: 'trademark-cancellation' }, // was: trademark-opposition
+          { label: 'Opposition & Counter Statement', slug: 'trademark-cancellation' },
         ],
       },
     ],
@@ -330,7 +330,7 @@ const trustItems = [
 function Dot() {
   return (
     <span
-      className="inline-block flex-shrink-0 rounded-full mt-[5px] bg-navy-700"
+      className="inline-block flex-shrink-0 rounded-full mt-[5px]"
       style={{ width: 7, height: 7, background: '#1e3a5f' }}
     />
   );
@@ -340,7 +340,7 @@ function Dot() {
 
 function HeroSection() {
   return (
-    <section className="pt-24 pb-16 bg-navy-950 relative overflow-hidden" style={{ background: '#0a1628' }}>
+    <section className="pt-24 pb-16 relative overflow-hidden" style={{ background: '#0a1628' }}>
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-10 left-20 w-64 h-64 bg-white rounded-full" />
         <div className="absolute bottom-5 right-10 w-40 h-40 bg-white rounded-full" />
@@ -354,7 +354,7 @@ function HeroSection() {
           Our Services
         </span>
 
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight">
           Services
         </h1>
         <p className="mt-3 text-sm sm:text-base" style={{ color: '#94a3b8' }}>
@@ -367,7 +367,7 @@ function HeroSection() {
           <div className="w-10 h-px" style={{ background: '#334155' }} />
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-10 sm:gap-16">
+        <div className="mt-10 flex flex-wrap justify-center gap-8 sm:gap-16">
           {[
             { value: '8', label: 'Service Categories' },
             { value: '100+', label: 'Service Offerings' },
@@ -390,24 +390,17 @@ function TopGrid({ onServiceClick }: { onServiceClick: (slug: string) => void })
   return (
     <div className="py-4 px-3" style={{ background: '#f9fafb' }}>
       <div
-        className="max-w-[1400px] mx-auto"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(8, 1fr)',
-          gap: 6,
-        }}
+        className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 lg:gap-[6px]"
       >
         {categoryCols.map((col) => {
           const Icon = col.icon;
           return (
             <div
               key={col.num}
-              className="rounded-2xl overflow-hidden"
+              className="rounded-2xl overflow-hidden flex flex-col"
               style={{
                 border: '1px solid #e2e8f0',
                 background: '#ffffff',
-                display: 'flex',
-                flexDirection: 'column',
                 boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
               }}
             >
@@ -504,12 +497,7 @@ function BottomSection() {
       style={{ background: '#ffffff', borderTop: '3px solid #0f2044' }}
     >
       <div
-        className="max-w-[1400px] mx-auto mt-4"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(5, 1fr)',
-          gap: 6,
-        }}
+        className="max-w-[1400px] mx-auto mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-[6px]"
       >
         {bottomCols.map((col) => {
           const Icon = col.icon;
@@ -527,8 +515,8 @@ function BottomSection() {
                 style={{ background: '#0f2044' }}
               >
                 <div
-                  className="rounded-lg flex items-center justify-center"
-                  style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.1)', flexShrink: 0 }}
+                  className="rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.1)' }}
                 >
                   <Icon size={15} strokeWidth={1.6} style={{ color: '#ffffff' }} />
                 </div>
@@ -553,7 +541,7 @@ function BottomSection() {
 
       {/* Trust bar */}
       <div
-        className="max-w-[1400px] mx-auto mt-4 rounded-2xl px-6 py-4 flex flex-wrap items-center justify-between gap-4"
+        className="max-w-[1400px] mx-auto mt-4 rounded-2xl px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4"
         style={{ background: '#0f2044' }}
       >
         {trustItems.map((t) => {
@@ -577,16 +565,16 @@ function BottomSection() {
 
       {/* Tagline bar */}
       <div
-        className="max-w-[1400px] mx-auto mt-3 rounded-2xl px-6 py-3 flex items-center justify-center gap-3"
+        className="max-w-[1400px] mx-auto mt-3 rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-center gap-3 text-center"
         style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}
       >
         <div
-          className="w-8 h-8 rounded-xl flex items-center justify-center"
+          className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{ background: '#eff6ff' }}
         >
           <Scale size={16} style={{ color: '#1e3a5f' }} />
         </div>
-        <span className="font-semibold" style={{ fontSize: 14, color: '#0f2044', letterSpacing: '0.2px' }}>
+        <span className="font-semibold" style={{ fontSize: 13, color: '#0f2044', letterSpacing: '0.2px' }}>
           One Stop Solution for All Your Corporate &amp; Compliance Needs
         </span>
       </div>
