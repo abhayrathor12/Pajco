@@ -1,8 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import {
-  ChevronDown,
-  ArrowRight,
-  CheckCircle2,
   Building2,
   Factory,
   FileText,
@@ -14,259 +11,371 @@ import {
   BookOpen,
   Receipt,
   Lightbulb,
-  Headphones,
   Rocket,
   Monitor,
+  Users,
+  ShieldCheck,
+  Clock,
+  IndianRupee,
+  Headphones,
+  Scale,
+  ArrowRight,
+  Target,
+  Award,
 } from 'lucide-react';
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────────────
 
-// Each service item now has a label + optional slug.
-// If a slug is provided, clicking that item navigates to the single service page.
-// Items without a slug are shown as plain text (service page not built yet).
+type ServiceItem = { label: string; slug?: string };
+type SubSection = { heading: string; items: ServiceItem[] };
+type CategoryCol = {
+  num: string;
+  icon: React.ElementType;
+  title: string;
+  color: string;
+  sections: SubSection[];
+};
+type BottomCol = {
+  icon: React.ElementType;
+  title: string;
+  items: string[];
+};
 
-const serviceCategories = [
+// ─── Top 8 category columns ───────────────────────────────────────────────────
+
+const categoryCols: CategoryCol[] = [
   {
-    id: 'company-formation',
+    num: '01',
     icon: Building2,
-    title: 'Company Formation',
-    tagline: 'Business Incorporation & Legal Entity Setup',
-    color: 'blue',
-    items: [
-      { label: 'Private Limited Company', slug: 'private-limited-company' },
-      { label: 'Public Limited Company', slug: 'public-limited-company' },
-      { label: 'One Person Company (OPC)', slug: 'one-person-company' },
-      { label: 'LLP Registration', slug: 'llp-registration' },
-      { label: 'Partnership Firm Registration', slug: 'partnership-firm-registration' },
-      { label: 'Proprietorship Setup', slug: 'proprietorship-setup' },
-      { label: 'Section 8 Company (NGO)', slug: 'section-8-company' },
+    title: 'Business Setup & Incorporation',
+    color: 'navy',
+    sections: [
+      {
+        heading: 'Company Formation',
+        items: [
+          { label: 'Private Limited Company', slug: 'private-limited-company' },
+          { label: 'Public Limited Company', slug: 'public-limited-company' },
+          { label: 'One Person Company (OPC)', slug: 'one-person-company' },
+          { label: 'LLP Registration', slug: 'llp-registration' },
+          { label: 'Partnership Firm Registration', slug: 'partnership-firm-registration' },
+          { label: 'Proprietorship Setup', slug: 'proprietorship-setup' },
+          { label: 'Section 8 Company (NGO)', slug: 'section-8-company' },
+        ],
+      },
+      {
+        heading: 'Industry & Business Registrations',
+        items: [
+          { label: 'FSSAI Registration', slug: 'fssai-registration' },
+          { label: 'Import Export Code (IEC)', slug: 'iec-registration' },           // was: import-export-code
+          { label: 'ICEGATE / DGFT Registration', slug: 'icegate-dgft-registration' },
+          { label: 'Startup India Registration', slug: 'startup-india-registration' },
+          { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },
+          { label: 'Shop & Establishment', slug: 'shop-establishment-registration' },
+        ],
+      },
     ],
   },
   {
-    id: 'industry-registrations',
-    icon: Factory,
-    title: 'Industry & Business Registrations',
-    tagline: 'Licenses, Certifications & Government Registrations',
-    color: 'orange',
-    items: [
-      { label: 'FSSAI Registration', slug: 'fssai-registration' },
-      { label: 'Import Export Code (IEC)', slug: 'import-export-code' },
-      { label: 'ICEGATE / DGFT Registration', slug: 'icegate-dgft-registration' },
-      { label: 'Startup India Registration', slug: 'startup-india-registration' },
-      { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },
-      { label: 'Shop & Establishment Registration', slug: 'shop-establishment-registration' },
-    ],
-  },
-  {
-    id: 'event-based-compliance',
-    icon: Calendar,
-    title: 'Event-Based Compliance',
-    tagline: 'Corporate Changes & ROC Event Filings',
-    color: 'amber',
-    items: [
-      { label: 'Appointment / Resignation of Directors', slug: 'director-appointment-resignation' },
-      { label: 'Change of Auditor', slug: 'change-of-auditor' },
-      { label: 'Share Transfer & Allotment', slug: 'share-transfer-allotment' },
-      { label: 'Increase in Authorised Capital', slug: 'increase-authorised-capital' },
-      { label: 'Alteration of MOA & AOA', slug: 'alteration-moa-aoa' },
-      { label: 'Change of Company Name', slug: 'change-company-name' },
-      { label: 'Shift in Registered Office', slug: 'shift-registered-office' },
-      { label: 'Charge Creation / Satisfaction', slug: 'charge-creation-satisfaction' },
-    ],
-  },
-  {
-    id: 'secretarial-support',
+    num: '02',
     icon: BookOpen,
-    title: 'Ongoing Secretarial Support',
-    tagline: 'Board, ROC & Secretarial Compliance Management',
-    color: 'teal',
-    items: [
-      { label: 'Board Meeting Notices & Minutes', slug: 'board-meeting-notices-minutes' },
-      { label: 'Maintenance of Statutory Registers', slug: 'maintenance-statutory-registers' },
-      { label: 'Director KYC & Disclosures', slug: 'director-kyc-disclosures' },
-      { label: 'ROC Event-Based Filings', slug: 'roc-event-based-filings' },
-      { label: 'Secretarial Audit', slug: 'secretarial-audit' },
+    title: 'Corporate Secretarial & ROC Compliance',
+    color: 'navy',
+    sections: [
+      {
+        heading: 'Event-Based Compliance',
+        items: [
+          { label: 'Appointment / Resignation of Directors', slug: 'director-appointment-resignation' },
+          { label: 'Change of Auditor', slug: 'change-of-auditor' },
+          { label: 'Share Transfer & Allotment', slug: 'share-transfer-allotment' },
+          { label: 'Increase in Authorised Capital', slug: 'increase-authorised-capital' },
+          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },          // was: alteration-moa-aoa
+          { label: 'Change of Company Name', slug: 'company-name-change' },           // was: change-company-name
+          { label: 'Change of Registered Office', slug: 'change-of-registered-office' }, // was: charge-creation-satisfaction (no data) → mapped to closest
+        ],
+      },
+      {
+        heading: 'Ongoing Secretarial Support',
+        items: [
+          { label: 'Board Meeting Notices & Minutes', slug: 'board-meeting-notices-minutes' },
+          { label: 'Maintenance of Statutory Registers', slug: 'statutory-registers-maintenance' }, // was: maintenance-statutory-registers
+          { label: 'Director KYC & Disqualification', slug: 'director-kyc-disqualification' },     // was: director-kyc-disclosures
+          { label: 'ROC Event-Based Filings', slug: 'roc-event-based-filings' },
+          { label: 'Secretarial Audit', slug: 'secretarial-audit' },
+        ],
+      },
+      {
+        heading: 'Annual Compliance',
+        items: [
+          { label: 'AOC-4 Filing', slug: 'aoc-4-filing' },
+          { label: 'MGT-7 / MGT-7A Filing', slug: 'mgt-7-annual-return' },           // was: mgt-7-filing
+          { label: 'ADT-1 & MSME Annual Filing', slug: 'adt-1-msme-annual-filing' }, // was: aoc-4-xbrl (no data)
+          { label: 'Annual ROC Filing Support', slug: 'roc-event-based-filings' },   // was: annual-roc-filing-support (no data) → closest
+          { label: 'Compounding of Offences', slug: 'compounding-of-offences' },
+        ],
+      },
     ],
   },
   {
-    id: 'annual-compliance',
-    icon: FileText,
-    title: 'Annual Compliance',
-    tagline: 'Annual ROC Filings & Corporate Compliance',
-    color: 'green',
-    items: [
-      { label: 'AOC-4 Filing', slug: 'aoc-4-filing' },
-      { label: 'MGT-7 / MGT-7A Filing', slug: 'mgt-7-filing' },
-      { label: 'AOC-4 XBRL', slug: 'aoc-4-xbrl' },
-      { label: 'Annual ROC Filing Support', slug: 'annual-roc-filing-support' },
-      { label: 'Compounding of Offences', slug: 'compounding-of-offences' },
-    ],
-  },
-  {
-    id: 'gst-services',
+    num: '03',
     icon: Receipt,
     title: 'GST Services',
-    tagline: 'GST Registration, Returns & Notices',
-    color: 'cyan',
-    items: [
-      { label: 'GST Registration & Setup', slug: 'gst-registration-setup' },
-      { label: 'GSTR-1 / GSTR-3B Filing', slug: 'gstr-1-3b-filing' },
-      { label: 'Annual Return (GSTR-9)', slug: 'gstr-9-annual-return' },
-      { label: 'GST Refunds', slug: 'gst-refunds' },
-      { label: 'GST Notice Handling', slug: 'gst-notice-handling' },
+    color: 'navy',
+    sections: [
+      {
+        heading: '',
+        items: [
+          { label: 'GST Registration & Setup', slug: 'gst-registration' },            // was: gst-registration-setup
+          { label: 'GSTR-1 / GSTR-3B Return Filing', slug: 'gst-return-filing' },    // was: gstr-1-3b-filing
+          { label: 'Annual Return (GSTR-9)', slug: 'gstr-9-annual-return' },
+          { label: 'GST Refunds', slug: 'gst-refund-claims' },                        // was: gst-refunds
+          { label: 'GST Notice Handling', slug: 'gst-notice-handling' },
+        ],
+      },
     ],
   },
   {
-    id: 'digital-services',
+    num: '04',
     icon: Monitor,
     title: 'Digital Services',
-    tagline: 'DSC, eSign & Digital Authentication',
-    color: 'violet',
-    items: [
-      { label: 'Class 3 DSC Issuance', slug: 'class-3-dsc-issuance' },
-      { label: 'DGFT DSC Token', slug: 'dgft-dsc-token' },
-      { label: 'eSign Services', slug: 'esign-services' },
-      { label: 'DSC Renewal / Update', slug: 'dsc-renewal-update' },
+    color: 'navy',
+    sections: [
+      {
+        heading: '',
+        items: [
+          { label: 'Class 3 DSC Issuance', slug: 'dsc-issuance' },                   // was: class-3-dsc-issuance
+          { label: 'IEC for Service Exporters', slug: 'iec-service-exporters' },      // was: dgft-dsc-token (no data) → closest
+          { label: 'DSC Renewal / Upgrade', slug: 'dsc-renewal-upgrade' },            // was: dsc-renewal-update / esign-services
+        ],
+      },
     ],
   },
   {
-    id: 'startup-support',
+    num: '05',
     icon: Rocket,
     title: 'Startup & Funding Support',
-    tagline: 'Startup Recognition, Funding & Investor Readiness',
-    color: 'rose',
-    items: [
-      { label: 'DPIIT Recognition', slug: 'dpiit-recognition' },
-      { label: 'Startup Tax Exemption', slug: 'startup-tax-exemption' },
-      { label: 'Pitch Deck Preparation', slug: 'pitch-deck-preparation' },
-      { label: 'Investor Due Diligence Support', slug: 'investor-due-diligence' },
-      { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },
-      { label: 'Valuation Support', slug: 'valuation-support' },
-      { label: 'MSME Lending Assistance', slug: 'msme-lending-assistance' },
-      { label: 'Startup Compliance Management', slug: 'startup-compliance-management' },
+    color: 'navy',
+    sections: [
+      {
+        heading: '',
+        items: [
+          { label: 'DPIIT Recognition', slug: 'dpiit-startup-recognition' },          // was: dpiit-recognition
+          { label: 'Startup Tax Exemption (80-IAC)', slug: 'startup-tax-exemption-80iac' }, // was: startup-tax-exemption
+          { label: 'Startup India Registration', slug: 'startup-india-registration' }, // was: pitch-deck-preparation (no data)
+          { label: 'Investor Due Diligence Support', slug: 'due-diligence' },          // was: investor-due-diligence (no data) → closest
+          { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },
+          { label: 'Share Subscription Agreement', slug: 'share-subscription-agreement' }, // was: valuation-support (no data)
+          { label: 'MSME (Udyam) Registration', slug: 'msme-udyam-registration' },    // was: msme-lending-assistance (no data)
+          { label: 'Startup Compliance (ROC)', slug: 'roc-event-based-filings' },     // was: startup-compliance-management (no data)
+        ],
+      },
     ],
   },
   {
-    id: 'exit-closure',
-    icon: LogOut,
-    title: 'Exit & Closure',
-    tagline: 'Business Closure & Strike Off Services',
-    color: 'red',
-    items: [
-      { label: 'Company Strike Off', slug: 'company-strike-off' },
-      { label: 'Section 248 Closure', slug: 'section-248-closure' },
-      { label: 'Voluntary Winding Up', slug: 'voluntary-winding-up' },
-      { label: 'LLP Closure', slug: 'llp-closure' },
-      { label: 'GST Cancellation', slug: 'gst-cancellation' },
-    ],
-  },
-  {
-    id: 'restructuring',
+    num: '06',
     icon: RefreshCw,
-    title: 'Restructuring',
-    tagline: 'Business Conversion & Structural Changes',
-    color: 'indigo',
-    items: [
-      { label: 'Partnership Conversion', slug: 'partnership-conversion' },
-      { label: 'LLP to Company Conversion', slug: 'llp-to-company-conversion' },
-      { label: 'Registered Office Shift', slug: 'registered-office-shift' },
-      { label: 'Object Clause Amendment', slug: 'object-clause-amendment' },
-      { label: 'Private to Public Conversion', slug: 'private-to-public-conversion' },
+    title: 'Business Restructuring & Closure',
+    color: 'navy',
+    sections: [
+      {
+        heading: 'Exit & Closure',
+        items: [
+          { label: 'Company Strike Off', slug: 'company-strike-off' },
+          { label: 'Voluntary Winding Up', slug: 'voluntary-winding-up' },            // was: section-248-closure → same thing
+          { label: 'Voluntary Winding Up (IBC)', slug: 'voluntary-winding-up' },
+          { label: 'LLP Closure', slug: 'llp-closure' },
+          { label: 'GST Cancellation', slug: 'gst-cancellation' },
+        ],
+      },
+      {
+        heading: 'Restructuring',
+        items: [
+          { label: 'Business Structure Conversion', slug: 'business-structure-conversion' }, // was: partnership-conversion / llp-to-company-conversion
+          { label: 'Change of Registered Office', slug: 'change-of-registered-office' },    // was: registered-office-shift
+          { label: 'Alteration of MOA & AOA', slug: 'moa-aoa-alteration' },                 // was: object-clause-amendment
+          { label: 'Company Name Change', slug: 'company-name-change' },                    // was: private-to-public-conversion (no data)
+        ],
+      },
     ],
   },
   {
-    id: 'core-advisory',
+    num: '07',
     icon: Briefcase,
-    title: 'Core Advisory',
-    tagline: 'Business Advisory & Financial Support',
-    color: 'slate',
-    items: [
-      { label: 'Due Diligence', slug: 'due-diligence' },
-      { label: 'Accounting & Bookkeeping', slug: 'accounting-bookkeeping' },
-      { label: 'Retainership Services', slug: 'retainership-services' },
+    title: 'Advisory & Professional Services',
+    color: 'navy',
+    sections: [
+      {
+        heading: 'Core Advisory',
+        items: [
+          { label: 'Due Diligence', slug: 'due-diligence' },
+          { label: 'Accounting & Bookkeeping', slug: 'accounting-bookkeeping' },
+          { label: 'Secretarial Audit', slug: 'secretarial-audit' },                  // was: retainership-services (no data)
+        ],
+      },
+      {
+        heading: 'Documentation & Legal Support',
+        items: [
+          { label: 'Drafting & Vetting of Agreements', slug: 'agreement-drafting-vetting' }, // was: drafting-vetting-agreements
+          { label: 'Share Subscription Agreement (SSA)', slug: 'share-subscription-agreement' },
+          { label: "Shareholders' Agreement (SHA)", slug: 'shareholders-agreement' },         // was: investor-due-diligence-support (no data)
+        ],
+      },
     ],
   },
   {
-    id: 'documentation-legal',
-    icon: Shield,
-    title: 'Documentation & Legal Support',
-    tagline: 'Agreements, Drafting & Legal Documentation',
-    color: 'purple',
-    items: [
-      { label: 'Drafting & Vetting of Agreements', slug: 'drafting-vetting-agreements' },
-      { label: 'Investor Due Diligence Support', slug: 'investor-due-diligence-support' },
-      { label: 'Share Subscription Agreement (SSA)', slug: 'share-subscription-agreement' },
-    ],
-  },
-  {
-    id: 'ipr-services',
+    num: '08',
     icon: Lightbulb,
     title: 'Intellectual Property (IPR)',
-    tagline: 'Trademark Registration & Brand Protection',
-    color: 'pink',
-    items: [
-      { label: 'Trademark Registration', slug: 'trademark-registration' },
-      { label: 'Public Search & Class Selection', slug: 'trademark-public-search' },
-      { label: 'Trademark Objection Reply', slug: 'trademark-objection-reply' },
-      { label: 'Hearing Representation', slug: 'trademark-hearing-representation' },
-      { label: 'Opposition & Counter Statement', slug: 'trademark-opposition' },
+    color: 'navy',
+    sections: [
+      {
+        heading: '',
+        items: [
+          { label: 'Trademark Registration', slug: 'trademark-registration' },
+          { label: 'Trademark Search & Watch', slug: 'trademark-watch-search' },       // was: trademark-public-search
+          { label: 'Trademark Objection Reply', slug: 'trademark-objection-reply' },
+          { label: 'Hearing Representation', slug: 'trademark-hearing-representation' },
+          { label: 'Opposition & Counter Statement', slug: 'trademark-cancellation' }, // was: trademark-opposition
+        ],
+      },
     ],
   },
 ];
 
-type ServiceItem = { label: string; slug?: string };
+// ─── Bottom compliance columns ────────────────────────────────────────────────
 
-const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; badge: string; dot: string }> = {
-  blue: { bg: 'hover:border-blue-300', iconBg: 'bg-blue-50', iconText: 'text-blue-600', badge: 'bg-blue-50 text-blue-700 border-blue-200', dot: 'bg-blue-500' },
-  orange: { bg: 'hover:border-orange-300', iconBg: 'bg-orange-50', iconText: 'text-orange-600', badge: 'bg-orange-50 text-orange-700 border-orange-200', dot: 'bg-orange-500' },
-  green: { bg: 'hover:border-green-300', iconBg: 'bg-green-50', iconText: 'text-green-600', badge: 'bg-green-50 text-green-700 border-green-200', dot: 'bg-green-500' },
-  purple: { bg: 'hover:border-purple-300', iconBg: 'bg-purple-50', iconText: 'text-purple-600', badge: 'bg-purple-50 text-purple-700 border-purple-200', dot: 'bg-purple-500' },
-  teal: { bg: 'hover:border-teal-300', iconBg: 'bg-teal-50', iconText: 'text-teal-600', badge: 'bg-teal-50 text-teal-700 border-teal-200', dot: 'bg-teal-500' },
-  amber: { bg: 'hover:border-amber-300', iconBg: 'bg-amber-50', iconText: 'text-amber-600', badge: 'bg-amber-50 text-amber-700 border-amber-200', dot: 'bg-amber-500' },
-  indigo: { bg: 'hover:border-indigo-300', iconBg: 'bg-indigo-50', iconText: 'text-indigo-600', badge: 'bg-indigo-50 text-indigo-700 border-indigo-200', dot: 'bg-indigo-500' },
-  red: { bg: 'hover:border-red-300', iconBg: 'bg-red-50', iconText: 'text-red-600', badge: 'bg-red-50 text-red-700 border-red-200', dot: 'bg-red-500' },
-  slate: { bg: 'hover:border-slate-300', iconBg: 'bg-slate-50', iconText: 'text-slate-600', badge: 'bg-slate-50 text-slate-700 border-slate-200', dot: 'bg-slate-500' },
-  cyan: { bg: 'hover:border-cyan-300', iconBg: 'bg-cyan-50', iconText: 'text-cyan-600', badge: 'bg-cyan-50 text-cyan-700 border-cyan-200', dot: 'bg-cyan-500' },
-  rose: { bg: 'hover:border-rose-300', iconBg: 'bg-rose-50', iconText: 'text-rose-600', badge: 'bg-rose-50 text-rose-700 border-rose-200', dot: 'bg-rose-500' },
-  violet: { bg: 'hover:border-violet-300', iconBg: 'bg-violet-50', iconText: 'text-violet-600', badge: 'bg-violet-50 text-violet-700 border-violet-200', dot: 'bg-violet-500' },
-  pink: { bg: 'hover:border-pink-300', iconBg: 'bg-pink-50', iconText: 'text-pink-600', badge: 'bg-pink-50 text-pink-700 border-pink-200', dot: 'bg-pink-500' },
-};
+const bottomCols: BottomCol[] = [
+  {
+    icon: Scale,
+    title: 'Company Law Compliances',
+    items: [
+      'Mandatory Compliances',
+      'Annual Return / Annual Filings',
+      'MSME Return',
+      'Return of Deposit DPT-3 Return',
+      'Minutes and Statutory Registers',
+      'Appointment of Auditor',
+      'Appointment of Secretarial Auditor',
+      'KYC of Directors',
+      'Yearly Event-based Directors disclosures',
+      'Share Reconciliation Statement',
+      'Annual Filing of LLP',
+      'Specialised Filings (DIR-3)',
+      'Share Reconciliation Statement',
+      'RBI and FEMA Compliances',
+    ],
+  },
+  {
+    icon: FileText,
+    title: 'Tax Compliances',
+    items: ['GST Compliance', 'ITR'],
+  },
+  {
+    icon: Calendar,
+    title: 'Event Based Compliances',
+    items: [
+      'Alteration of MOA and AOA',
+      'Charge Creation / Satisfaction',
+      'Company Name Change',
+      'LLP Name Change',
+      'Change in Auditor',
+      'Change in Object clause of MOA',
+      'Transfers of Shares',
+      'Director Resignation and Appointment',
+      'Changes in Designation of Director',
+      'Increase in Authorised Share Capital',
+      'Issue of Shares',
+    ],
+  },
+  {
+    icon: RefreshCw,
+    title: 'Restructuring Compliances',
+    items: [
+      'Registered Office Shift of Company and LLP',
+      'Conversion of Public Limited to Private limited',
+      'Conversion of Private Limited to Public limited',
+      'Conversion of Company to LLP',
+      'Conversion of LLP in to Company',
+      'Conversion of OPC in to private limited',
+      'Conversion of Private limited in to OPC',
+      'Merger and Acquisition',
+      'Winding up',
+      'Demerger',
+    ],
+  },
+  {
+    icon: Lightbulb,
+    title: 'Intellectual Property (IPR)',
+    items: [
+      'Trademark Registration',
+      'Public Search & Class Selection',
+      'Trademark Objection Reply',
+      'Hearing Representation',
+      'Opposition & Counter Statement',
+    ],
+  },
+];
+
+// ─── Trust items ──────────────────────────────────────────────────────────────
+
+const trustItems = [
+  { icon: Users, title: 'Expert Guidance', sub: 'Experienced Professionals' },
+  { icon: ShieldCheck, title: 'Compliant & Secure', sub: '100% Compliance Assured' },
+  { icon: Clock, title: 'Timely Service', sub: 'On-time Delivery Guaranteed' },
+  { icon: IndianRupee, title: 'Cost Effective', sub: 'Transparent Pricing · Best Value' },
+  { icon: Headphones, title: 'End-to-End Support', sub: 'From Start to Success' },
+];
+
+// ─── Dot bullet ───────────────────────────────────────────────────────────────
+
+function Dot() {
+  return (
+    <span
+      className="inline-block flex-shrink-0 rounded-full mt-[5px] bg-navy-700"
+      style={{ width: 7, height: 7, background: '#1e3a5f' }}
+    />
+  );
+}
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function HeroSection() {
   return (
-    <section className="relative pt-28 pb-24 bg-navy-950 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-3xl" />
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent-400/5 rounded-full" />
-        <div className="absolute bottom-0 -left-10 w-64 h-64 bg-navy-700/20 rounded-full" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+    <section className="pt-24 pb-16 bg-navy-950 relative overflow-hidden" style={{ background: '#0a1628' }}>
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-10 left-20 w-64 h-64 bg-white rounded-full" />
+        <div className="absolute bottom-5 right-10 w-40 h-40 bg-white rounded-full" />
       </div>
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight tracking-tight">
+        <span
+          className="inline-block px-3 py-1 text-xs font-semibold rounded-full uppercase tracking-wider mb-4"
+          style={{ background: 'rgba(255,255,255,0.08)', color: '#93c5fd' }}
+        >
           Our Services
+        </span>
+
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+          Services
         </h1>
-        <p className="mt-5 text-lg sm:text-xl text-navy-300 max-w-2xl mx-auto leading-relaxed">
-          One Stop Solution for All Your Corporate & Compliance Needs — from
-          incorporation to exit and everything in between.
+        <p className="mt-3 text-sm sm:text-base" style={{ color: '#94a3b8' }}>
+          End-to-End Corporate, Regulatory &amp; Compliance Solutions
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-8 sm:gap-12">
+
+        <div className="flex items-center justify-center gap-3 mt-6">
+          <div className="w-10 h-px" style={{ background: '#334155' }} />
+          <div className="w-2 h-2 rounded-full" style={{ background: '#3b82f6' }} />
+          <div className="w-10 h-px" style={{ background: '#334155' }} />
+        </div>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-10 sm:gap-16">
           {[
-            { value: '13', label: 'Service Categories' },
+            { value: '8', label: 'Service Categories' },
             { value: '100+', label: 'Service Offerings' },
             { value: '100%', label: 'Compliance Coverage' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
-              <div className="text-sm text-navy-400 mt-0.5">{stat.label}</div>
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-3xl font-bold text-white">{s.value}</div>
+              <div className="text-xs mt-1" style={{ color: '#64748b' }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -275,107 +384,213 @@ function HeroSection() {
   );
 }
 
-// ─── Service Card ─────────────────────────────────────────────────────────────
+// ─── Top grid ─────────────────────────────────────────────────────────────────
 
-function ServiceCard({
-  category,
-  onServiceClick,
-}: {
-  category: typeof serviceCategories[0];
-  onServiceClick: (slug: string) => void;
-}) {
-  const Icon = category.icon;
-  const c = colorMap[category.color];
-
+function TopGrid({ onServiceClick }: { onServiceClick: (slug: string) => void }) {
   return (
-    <div className={`rounded-2xl border bg-white transition-all duration-300 border-navy-200 shadow-xl shadow-navy-900/8`}>
-      {/* Card header — static, no toggle */}
-      <div className="w-full flex items-start gap-4 p-5 sm:p-6 text-left">
-        <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${c.iconBg} ${c.iconText}`}>
-          <Icon className="w-5 h-5" strokeWidth={1.6} />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-navy-900 leading-snug">
-            {category.title}
-          </h3>
-          <p className="mt-1 text-xs sm:text-sm text-navy-500 leading-relaxed line-clamp-2">
-            {category.tagline}
-          </p>
-          <span className={`inline-flex items-center gap-1 mt-2 px-2 py-0.5 rounded-full text-xs font-medium border ${c.badge}`}>
-            <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
-            {category.items.length} Services
-          </span>
-        </div>
-      </div>
+    <div className="py-4 px-3" style={{ background: '#f9fafb' }}>
+      <div
+        className="max-w-[1400px] mx-auto"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(8, 1fr)',
+          gap: 6,
+        }}
+      >
+        {categoryCols.map((col) => {
+          const Icon = col.icon;
+          return (
+            <div
+              key={col.num}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                border: '1px solid #e2e8f0',
+                background: '#ffffff',
+                display: 'flex',
+                flexDirection: 'column',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+              }}
+            >
+              {/* Header */}
+              <div
+                className="flex flex-col items-center gap-1.5 px-3 py-4 text-center"
+                style={{ background: '#0f2044' }}
+              >
+                <span
+                  className="flex items-center justify-center rounded-xl font-bold"
+                  style={{
+                    width: 26,
+                    height: 26,
+                    fontSize: 11,
+                    background: 'rgba(255,255,255,0.12)',
+                    color: '#93c5fd',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                  }}
+                >
+                  {col.num}
+                </span>
+                <Icon size={22} strokeWidth={1.6} style={{ color: '#ffffff' }} />
+                <span
+                  className="font-semibold leading-snug"
+                  style={{ fontSize: 12, color: '#e2e8f0' }}
+                >
+                  {col.title}
+                </span>
+              </div>
 
-      {/* Always-visible items list */}
-      <div className="px-5 sm:px-6 pb-5 sm:pb-6">
-        <div className="border-t border-navy-100 pt-4">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-            {category.items.map((item: ServiceItem) => (
-              <li key={item.label} className="flex items-start gap-2 text-sm leading-snug">
-                {item.slug ? (
-                  <button
-                    onClick={() => item.slug && onServiceClick(item.slug)}
-                    className="flex items-start gap-2 text-navy-600 hover:text-accent-600 transition-colors text-left group w-full"
-                  >
-                    <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 mt-0.5 ${c.iconText} group-hover:text-accent-500 transition-colors`} />
-                    <span className="group-hover:underline underline-offset-2 decoration-accent-400">
-                      {item.label}
-                    </span>
-                  </button>
-                ) : (
-                  <span className="flex items-start gap-2 text-navy-600">
-                    <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 mt-0.5 ${c.iconText}`} />
-                    <span>{item.label}</span>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+              {/* Sections */}
+              <div className="flex flex-col flex-1">
+                {col.sections.map((sec, si) => (
+                  <div key={si}>
+                    {sec.heading && (
+                      <div
+                        className="px-3 py-1.5 font-bold uppercase tracking-wide"
+                        style={{
+                          fontSize: 9,
+                          color: '#1e3a5f',
+                          background: '#eff6ff',
+                          borderTop: '1px solid #dbeafe',
+                          borderBottom: '1px solid #dbeafe',
+                        }}
+                      >
+                        {sec.heading}
+                      </div>
+                    )}
+                    <ul className="px-3 py-2 space-y-1.5">
+                      {sec.items.map((item) =>
+                        item.slug ? (
+                          <li key={item.label}>
+                            <button
+                              onClick={() => onServiceClick(item.slug!)}
+                              className="flex items-start gap-1.5 text-left w-full group"
+                              style={{ fontSize: 8.5 }}
+                            >
+                              <Dot />
+                              <span
+                                className="leading-snug group-hover:underline"
+                                style={{ color: '#2d4a6e' }}
+                              >
+                                {item.label}
+                              </span>
+                            </button>
+                          </li>
+                        ) : (
+                          <li key={item.label} className="flex items-start gap-1.5">
+                            <Dot />
+                            <span className="leading-snug" style={{ fontSize: 8.5, color: '#2d4a6e' }}>
+                              {item.label}
+                            </span>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-// ─── Services List Section ────────────────────────────────────────────────────
+// ─── Bottom compliance section ────────────────────────────────────────────────
 
-function ServicesListSection({
-  onServiceClick,
-}: {
-  onServiceClick: (slug: string) => void;
-}) {
+function BottomSection() {
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-navy-900">
-            What We Offer
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {serviceCategories.map((cat) => (
-            <ServiceCard key={cat.id} category={cat} onServiceClick={onServiceClick} />
-          ))}
-        </div>
-        <div className="mt-14 rounded-2xl bg-navy-900 px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl shadow-navy-900/20">
-          <div className="flex items-center gap-3 text-white text-center sm:text-left">
-            <div className="w-10 h-10 rounded-xl bg-accent-500/20 flex items-center justify-center flex-shrink-0">
-              <Lightbulb className="w-5 h-5 text-accent-400" />
-            </div>
-            <div>
-              <div className="font-semibold text-base sm:text-lg">
-                One Stop Solution for All Your Corporate & Compliance Needs
+    <div
+      className="px-3 pt-0 pb-4"
+      style={{ background: '#ffffff', borderTop: '3px solid #0f2044' }}
+    >
+      <div
+        className="max-w-[1400px] mx-auto mt-4"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          gap: 6,
+        }}
+      >
+        {bottomCols.map((col) => {
+          const Icon = col.icon;
+          return (
+            <div
+              key={col.title}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+              }}
+            >
+              <div
+                className="flex items-center gap-2 px-3 py-2"
+                style={{ background: '#0f2044' }}
+              >
+                <div
+                  className="rounded-lg flex items-center justify-center"
+                  style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.1)', flexShrink: 0 }}
+                >
+                  <Icon size={15} strokeWidth={1.6} style={{ color: '#ffffff' }} />
+                </div>
+                <span className="font-semibold leading-snug" style={{ fontSize: 12, color: '#e2e8f0' }}>
+                  {col.title}
+                </span>
               </div>
-              <div className="text-navy-400 text-sm mt-0.5">
-                Experienced Professionals · 100% Compliance Assured · On-time Delivery · Transparent Pricing
-              </div>
+              <ul className="px-3 py-2.5 space-y-1.5" style={{ background: '#ffffff' }}>
+                {col.items.map((item) => (
+                  <li key={item} className="flex items-start gap-1.5">
+                    <Dot />
+                    <span className="leading-snug" style={{ fontSize: 11, color: '#2d4a6e' }}>
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
-    </section>
+
+      {/* Trust bar */}
+      <div
+        className="max-w-[1400px] mx-auto mt-4 rounded-2xl px-6 py-4 flex flex-wrap items-center justify-between gap-4"
+        style={{ background: '#0f2044' }}
+      >
+        {trustItems.map((t) => {
+          const Icon = t.icon;
+          return (
+            <div key={t.title} className="flex flex-col items-center text-center flex-1 min-w-[100px] gap-1">
+              <div
+                className="rounded-xl flex items-center justify-center mb-1"
+                style={{ width: 40, height: 40, background: 'rgba(255,255,255,0.08)' }}
+              >
+                <Icon size={22} strokeWidth={1.5} style={{ color: '#ffffff' }} />
+              </div>
+              <span className="font-semibold block" style={{ fontSize: 13, color: '#ffffff' }}>
+                {t.title}
+              </span>
+              <span style={{ fontSize: 11, color: '#94a3b8' }}>{t.sub}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Tagline bar */}
+      <div
+        className="max-w-[1400px] mx-auto mt-3 rounded-2xl px-6 py-3 flex items-center justify-center gap-3"
+        style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}
+      >
+        <div
+          className="w-8 h-8 rounded-xl flex items-center justify-center"
+          style={{ background: '#eff6ff' }}
+        >
+          <Scale size={16} style={{ color: '#1e3a5f' }} />
+        </div>
+        <span className="font-semibold" style={{ fontSize: 14, color: '#0f2044', letterSpacing: '0.2px' }}>
+          One Stop Solution for All Your Corporate &amp; Compliance Needs
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -383,23 +598,34 @@ function ServicesListSection({
 
 function CTASection() {
   return (
-    <section className="relative py-20 bg-navy-950 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-500/5 rounded-full blur-3xl" />
+    <section className="py-16 relative overflow-hidden" style={{ background: '#0f2044' }}>
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-5 right-20 w-48 h-48 bg-white rounded-full" />
+        <div className="absolute bottom-0 left-10 w-32 h-32 bg-white rounded-full" />
       </div>
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white">
+      <div className="relative max-w-3xl mx-auto px-4 text-center">
+        <span
+          className="inline-block px-3 py-1 text-xs font-semibold rounded-full uppercase tracking-wider mb-4"
+          style={{ background: 'rgba(255,255,255,0.08)', color: '#93c5fd' }}
+        >
+          Get In Touch
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-bold text-white">
           Need a Service Not Listed Here?
         </h2>
-        <p className="mt-4 text-navy-300 text-base sm:text-lg max-w-lg mx-auto leading-relaxed">
+        <p className="mt-3 text-sm leading-relaxed" style={{ color: '#94a3b8' }}>
           We offer many more specialised services. Reach out and let us know how we can help your business thrive.
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="tel:+911234567890"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-navy-800 text-white font-semibold rounded-xl hover:bg-navy-700 transition-colors border border-navy-700"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90"
+            style={{
+              background: '#ffffff',
+              color: '#0f2044',
+            }}
           >
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight size={16} />
             Contact Us
           </a>
         </div>
@@ -408,15 +634,16 @@ function CTASection() {
   );
 }
 
-// ─── Page (with routing) ──────────────────────────────────────────────────────
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#f9fafb' }}>
       <HeroSection />
-      <ServicesListSection onServiceClick={(slug) => navigate(`/services/${slug}`)} />
+      <TopGrid onServiceClick={(slug) => navigate(`/services/${slug}`)} />
+      <BottomSection />
       <CTASection />
     </div>
   );

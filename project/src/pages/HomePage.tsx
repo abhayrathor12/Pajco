@@ -192,7 +192,11 @@ export default function HomePage() {
             {servicePreview.map((service) => {
               const Icon = service.icon;
               return (
-                <div key={service.id} className="flex flex-col items-center text-center group">
+                <Link
+                  key={service.id}
+                  to="/services"
+                  className="flex flex-col items-center text-center group"
+                >
                   {/* Circle icon - fixed height wrapper */}
                   <div className="h-24 flex items-center justify-center">
                     <div className="w-20 h-20 rounded-full border-2 border-gray-200 flex items-center justify-center group-hover:border-amber-400 transition-colors">
@@ -201,7 +205,7 @@ export default function HomePage() {
                   </div>
                   {/* Gold underline */}
                   <div className="w-8 h-0.5 bg-amber-400 rounded-full mb-3" />
-                  {/* Title - fixed min height so descriptions start at same line */}
+                  {/* Title */}
                   <p className="font-bold text-navy-900 text-sm sm:text-base leading-tight mb-2 min-h-[40px] flex items-start justify-center">
                     {service.title}
                   </p>
@@ -209,7 +213,7 @@ export default function HomePage() {
                   <p className="text-xs sm:text-sm text-navy-500 leading-relaxed">
                     {service.shortDesc}
                   </p>
-                </div>
+                </Link>
               );
             })}
           </div>
